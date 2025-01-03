@@ -1,0 +1,10 @@
+UPDATE player SET identifier='aae0e5ef-a443-4ca4-a42d-567d8b8a217f' WHERE last_name = 'Djokovic';
+UPDATE player SET identifier='5b1cd729-6594-4233-ac33-f946ed612a55' WHERE last_name = 'Alcaraz';
+UPDATE player SET identifier='be190b61-3cc7-42a7-acb4-f713b0bd71a4' WHERE last_name = 'Sinner';
+UPDATE player SET identifier='6e19f4b8-c394-4797-82c2-57abb4303bbe' WHERE last_name = 'Medvedev';
+UPDATE player SET identifier='c0e4c803-d8f8-44ae-a5a7-d670f10d1149' WHERE last_name = 'Rublev';
+UPDATE player SET identifier='61fbe7b5-0317-41e5-b32e-3ecfcffe648b' WHERE last_name = 'Zverev';
+UPDATE player SET identifier='ebf68279-9e1c-4a85-80a8-b5107cf218f1' WHERE last_name = 'Rune';
+UPDATE player SET identifier='54252315-4ec1-4012-b48e-fc270b235232' WHERE last_name = 'Hurkacz';
+UPDATE player SET identifier='1e1e1719-9d99-4e7b-94ea-14e416146120' WHERE last_name = 'De Minaur';
+UPDATE player SET identifier='4fed161e-b89b-4e6a-bb11-98647988e502' WHERE last_name = 'Fritz';
