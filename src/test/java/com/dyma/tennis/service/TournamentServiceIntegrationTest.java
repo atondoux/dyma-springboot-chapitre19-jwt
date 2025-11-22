@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 import java.util.UUID;
 
@@ -81,8 +80,8 @@ public class TournamentServiceIntegrationTest {
         TournamentToUpdate tournamentToUpdate = new TournamentToUpdate(
                 frenchOpenIdentifier,
                 "Roland Garros",
-                LocalDate.of(2025, Month.MAY, 26),
-                LocalDate.of(2025, Month.JUNE, 9),
+                LocalDate.now().plusDays(10),
+                LocalDate.now().plusDays(17),
                 2500000,
                 128
         );
