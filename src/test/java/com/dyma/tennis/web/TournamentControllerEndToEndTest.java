@@ -19,7 +19,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 import java.util.UUID;
 
@@ -85,8 +84,8 @@ public class TournamentControllerEndToEndTest {
         TournamentToUpdate tournamentToUpdate = new TournamentToUpdate(
                 UUID.fromString("d4a9f8e2-9051-4739-90bc-1cb7e4c7ad42"),
                 "Roland Garros",
-                LocalDate.of(2025, Month.MAY, 26),
-                LocalDate.of(2025, Month.JUNE, 9),
+                LocalDate.now().plusDays(10),
+                LocalDate.now().plusDays(17),
                 2500000,
                 128
         );
