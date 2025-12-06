@@ -6,25 +6,27 @@ import com.dyma.tennis.model.Tournament;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@ExtendWith(MockitoExtension.class)
 public class TournamentServiceTest {
 
     @Mock
     private TournamentRepository tournamentRepository;
 
+    private TournamentMapper tournamentMapper = new TournamentMapper();
+
     private TournamentService tournamentService;
 
     @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.openMocks(this);
-        TournamentMapper tournamentMapper = new TournamentMapper();
+    void setUp() {
         tournamentService = new TournamentService(tournamentRepository, tournamentMapper);
     }
 

@@ -3,12 +3,12 @@ services:
   mongodb:
     image: mongo:5.0
     volumes:
-      - mongo_data:/data/db
+      - dyma_graylog_mongo_data:/data/db
   # Elasticsearch:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
     volumes:
-      - es_data:/usr/share/elasticsearch/data
+      - dyma_graylog_es_data:/usr/share/elasticsearch/data
     environment:
       - http.host=0.0.0.0
       - transport.host=localhost
@@ -23,7 +23,7 @@ services:
   graylog:
     image: graylog/graylog:5.1
     volumes:
-      - graylog_journal:/usr/share/graylog/data/journal
+      - dyma_graylog_journal:/usr/share/graylog/data/journal
     environment:
       # CHANGE ME (must be at least 16 characters)!
       - GRAYLOG_PASSWORD_SECRET=dymagraylogsecret
@@ -47,11 +47,8 @@ services:
       - 12201:12201
       # GELF UDP
       - 12201:12201/udp
-# Volumes for persisting data
+
 volumes:
-  mongo_data:
-    driver: local
-  es_data:
-    driver: local
-  graylog_journal:
-    driver: local
+  dyma_graylog_mongo_data:
+  dyma_graylog_es_data:
+  dyma_graylog_journal:

@@ -14,8 +14,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 @SpringBootTest
 public class TournamentServiceIntegrationTest {
 
@@ -67,10 +65,9 @@ public class TournamentServiceIntegrationTest {
         );
 
         // When / Then
-        Exception exception = assertThrows(TournamentAlreadyExistsException.class, () -> {
-            tournamentService.create(duplicatedTournamentToCreate);
-        });
-        Assertions.assertThat(exception.getMessage()).contains("Tournament with name Madrid Master 1000 already exists.");
+        Assertions.assertThatThrownBy(() -> tournamentService.create(duplicatedTournamentToCreate))
+                .isInstanceOf(TournamentAlreadyExistsException.class)
+                .hasMessage("Tournament with name Madrid Master 1000 already exists.");
     }
 
     @Test
@@ -115,9 +112,8 @@ public class TournamentServiceIntegrationTest {
         UUID tournamentToDelete = UUID.fromString("5f8c9b43-8d74-49e8-b821-f43d57e4a9b7");
 
         // When / Then
-        Exception exception = assertThrows(TournamentNotFoundException.class, () -> {
-            tournamentService.delete(tournamentToDelete);
-        });
-        Assertions.assertThat(exception.getMessage()).isEqualTo("Tournament with identifier 5f8c9b43-8d74-49e8-b821-f43d57e4a9b7 could not be found.");
+        Assertions.assertThatThrownBy(() -> tournamentService.delete(tournamentToDelete))
+                .isInstanceOf(TournamentNotFoundException.class)
+                .hasMessage("Tournament with identifier 5f8c9b43-8d74-49e8-b821-f43d57e4a9b7 could not be found.");
     }
 }
