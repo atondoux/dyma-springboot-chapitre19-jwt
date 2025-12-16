@@ -10,8 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 @SpringBootTest
 public class RegistrationServiceIntegrationTest {
 
@@ -51,10 +49,8 @@ public class RegistrationServiceIntegrationTest {
         registrationService.register(frenchOpen, rafaelNadal);
 
         // When / then
-        Exception exception = assertThrows(TournamentRegistrationException.class, () -> {
-            registrationService.register(frenchOpen, rafaelNadal);
-        });
-        Assertions.assertThat(exception.getMessage()).isEqualTo("Player b466c6f7-52c6-4f25-b00d-c562be41311e is already registered to tournament d4a9f8e2-9051-4739-90bc-1cb7e4c7ad42");
-
+        Assertions.assertThatThrownBy(() -> registrationService.register(frenchOpen, rafaelNadal))
+                .isInstanceOf(TournamentRegistrationException.class)
+                .hasMessage("Player b466c6f7-52c6-4f25-b00d-c562be41311e is already registered to tournament d4a9f8e2-9051-4739-90bc-1cb7e4c7ad42");
     }
 }

@@ -16,8 +16,6 @@ import java.time.Month;
 import java.util.List;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 @SpringBootTest
 public class
 PlayerServiceIntegrationTest {
@@ -71,13 +69,9 @@ PlayerServiceIntegrationTest {
         );
 
         // When / Then
-        Exception exception = assertThrows(PlayerAlreadyExistsException.class, () -> {
-            playerService.create(duplicatedPlayerToCreate);
-        });
-        Assertions.assertThat(exception.getMessage()).contains("Player with " +
-                "firstName John " +
-                "lastName Doe " +
-                "and birthDate 2000-01-01 already exists.");
+        Assertions.assertThatThrownBy(() -> playerService.create(duplicatedPlayerToCreate))
+                .isInstanceOf(PlayerAlreadyExistsException.class)
+                .hasMessage("Player with firstName John lastName Doe and birthDate 2000-01-01 already exists.");
     }
 
     @Test
@@ -124,9 +118,8 @@ PlayerServiceIntegrationTest {
         UUID playerToDelete = UUID.fromString("aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb");
 
         // When / Then
-        Exception exception = assertThrows(PlayerNotFoundException.class, () -> {
-            playerService.delete(playerToDelete);
-        });
-        Assertions.assertThat(exception.getMessage()).isEqualTo("Player with identifier aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb could not be found.");
+        Assertions.assertThatThrownBy(() -> playerService.delete(playerToDelete))
+                .isInstanceOf(PlayerNotFoundException.class)
+                .hasMessage("Player with identifier aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb could not be found.");
     }
 }
